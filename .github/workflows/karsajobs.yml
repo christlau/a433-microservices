@@ -2,8 +2,7 @@ name: lint-test-build  # nama workflow github action
 
 on:
   push:
-    branches:
-      - karsajobs  # kondisi trigger workflow, adalah saat ada push di branch
+    branches: ["karsajobs"]  # kondisi trigger workflow, adalah saat ada push di branch
 
 jobs:
 
