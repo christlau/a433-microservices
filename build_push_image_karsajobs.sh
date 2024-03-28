@@ -1,5 +1,6 @@
 #!/bin/sh
 
+
 # menentukan variabel untuk nama image dan nama akun GitHub
 image_name="karsajobs"
 github_account="christlau"
