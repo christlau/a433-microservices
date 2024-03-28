@@ -1,7 +1,9 @@
 name: lint-test-build  # nama workflow github action
 
 on: [push] # kondisi trigger workflow, adalah saat ada push di branch
-
+permissions:
+      contents: read
+      packages: write
 jobs:
 
 # job pertama
@@ -18,6 +20,9 @@ jobs:
   test-app:  # Name of the second job
     runs-on: ubuntu-latest  # job di run pada ubuntu
     needs: lint-dockerfile  # dependensi atas job yang pertama
+    permissions:
+      contents: read
+      packages: write
     steps:
       - name: Checkout code  
         uses: actions/checkout@v4  
@@ -41,8 +46,8 @@ jobs:
         uses: docker/login-action@v3  
         with:
           registry: ghcr.io  # menentukan GitHub Container Registry
-          username: ${{github.actor}}
-          password: ${{secrets.GHCR_TOKEN}}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push Docker image  
         run: |
           docker build -t ghcr.io/${{github.actor}}/karsajobs:latest .  
